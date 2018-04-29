@@ -7,17 +7,17 @@ module.exports = function(app, schedule, ipAdresses)	{
     winston.debug("GET :: /light/actions");
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     ip = ip.split(':')[3];
-    console.log("ip = " + ip + "::" + _.includes(ipAdresses, ip));
-    console.log("ip addrs = " + ipAdresses);
+    winston.debug("ip = " + ip + "::" + _.includes(ipAdresses, ip));
+    winston.debug("ip addrs = " + ipAdresses);
     if(false == _.includes(ipAdresses, ip)) {
-      console.log("add ip " + ip);
+      winston.debug("add ip " + ip);
       ipAdresses.push(ip);
     } else {
-      console.log("already have " + ip);
+      winston.debug("already have " + ip);
     }
     schedule.getActiveActions(function(err, result){
       var lightResult = "";
-      console.log(result);
+      winston.debug(result);
       if(result.length != 0) {
         lightResult = "" + result.length + "\n";
       }

@@ -42,6 +42,7 @@ module.exports = function(app, ipAdresses)	{
 
   app.get('/light/color', function(req, res) {
     winston.debug("GET :: /light/color");
+    console.log(req.query[0]);
     var red = 0;
     var green = 0;
     var blue = 0;
